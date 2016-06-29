@@ -2,76 +2,106 @@
 
 /*
 -----------------------------------------------------------------------------------------------------------------
-  helpers/math
+helpers/math
 -----------------------------------------------------------------------------------------------------------------
  */
 
 (function() {
-  this.math = function() {
-    this.randomOfUniform = function() {
-      return Math.random();
+  var getMaxIntRandom, getMaxRandom, getRadians, getRandomArrayValue, getRangeIntRandom, getRangeRandom, getVx, getVy, randomOfAdd, randomOfMulti, randomOfNormal, randomOfSqrt, randomOfSquare, randomOfUniform;
+
+  randomOfUniform = function() {
+    return Math.random();
+  };
+
+  randomOfAdd = function() {
+    return (Math.random() + Math.random()) / 2;
+  };
+
+  randomOfMulti = function() {
+    return Math.random() * Math.random();
+  };
+
+  randomOfSquare = function() {
+    var _r;
+    _r = Math.random();
+    return _r * _r;
+  };
+
+  randomOfSqrt = function() {
+    return Math.sqrt(Math.random());
+  };
+
+  randomOfNormal = function() {
+    var _r, calc;
+    calc = function() {
+      var r, r1, r2;
+      r1 = Math.random();
+      r2 = Math.random();
+      r = Math.sqrt(-2.0 * Math.log(r1)) * Math.sin(2.0 * Math.PI * r2);
+      return (r + 3) / 6;
     };
-    this.randomOfAdd = function() {
-      return (Math.random() + Math.random()) / 2;
-    };
-    this.randomOfMulti = function() {
-      return Math.random() * Math.random();
-    };
-    this.randomOfSquare = function() {
-      var _r;
-      _r = Math.random();
-      return _r * _r;
-    };
-    this.randomOfSqrt = function() {
-      return Math.sqrt(Math.random());
-    };
-    this.randomOfNormal = function() {
-      var _r, calc;
-      calc = function() {
-        var r, r1, r2;
-        r1 = Math.random();
-        r2 = Math.random();
-        r = Math.sqrt(-2.0 * Math.log(r1)) * Math.sin(2.0 * Math.PI * r2);
-        return (r + 3) / 6;
-      };
-      while (true) {
-        _r = calc();
-        if (0 <= _r && _r < 1) {
-          break;
-        }
+    while (true) {
+      _r = calc();
+      if (0 <= _r && _r < 1) {
+        break;
       }
-      return _r;
-    };
-    this.getMaxRandom = function(max, algorithm) {
-      if (!algorithm) {
-        algorithm = Math.random;
-      }
-      return algorithm() * max;
-    };
-    this.getMaxIntRandom = function(max, algorithm) {
-      return Math.floor(getMaxRandom(max, algorithm));
-    };
-    this.getRangeRandom = function(min, max, algorithm) {
-      if (!algorithm) {
-        algorithm = Math.random;
-      }
-      return (algorithm() * (max - min)) + min;
-    };
-    this.getRangeIntRandom = function(min, max, algorithm) {
-      return Math.floor(getRangeRandom(min, max, algorithm));
-    };
-    this.getRandomArrayValue = function(arr) {
-      return arr[getMaxIntRandom(arr.length)];
-    };
-    this.getRadians = function(angle) {
-      return angle * Math.PI / 180;
-    };
-    this.getVx = function(radians, speed) {
-      return Math.cos(radians) * speed;
-    };
-    return this.getVy = function(radians, speed) {
-      return Math.sin(radians) * speed;
-    };
+    }
+    return _r;
+  };
+
+  getMaxRandom = function(max, algorithm) {
+    if (!algorithm) {
+      algorithm = Math.random;
+    }
+    return algorithm() * max;
+  };
+
+  getMaxIntRandom = function(max, algorithm) {
+    return Math.floor(getMaxRandom(max, algorithm));
+  };
+
+  getRangeRandom = function(min, max, algorithm) {
+    if (!algorithm) {
+      algorithm = Math.random;
+    }
+    return (algorithm() * (max - min)) + min;
+  };
+
+  getRangeIntRandom = function(min, max, algorithm) {
+    return Math.floor(getRangeRandom(min, max, algorithm));
+  };
+
+  getRandomArrayValue = function(arr) {
+    return arr[getMaxIntRandom(arr.length)];
+  };
+
+  getRadians = function(angle) {
+    return angle * Math.PI / 180;
+  };
+
+  getVx = function(radians, speed) {
+    return Math.cos(radians) * speed;
+  };
+
+  getVy = function(radians, speed) {
+    return Math.sin(radians) * speed;
+  };
+
+  module.exports = {
+    randomOfUniform: randomOfUniform,
+    randomOfAdd: randomOfAdd,
+    randomOfMulti: randomOfMulti,
+    randomOfSquare: randomOfSquare,
+    randomOfSqrt: randomOfSqrt,
+    randomOfNormal: randomOfNormal,
+    getMaxRandom: getMaxRandom,
+    getMaxIntRandom: getMaxIntRandom,
+    getRangeRandom: getRangeRandom,
+    getRangeIntRandom: getRangeIntRandom,
+    getRandomArrayValue: getRandomArrayValue,
+    getRadians: getRadians,
+    getVx: getVx,
+    getVy: getVy
   };
 
 }).call(this);
